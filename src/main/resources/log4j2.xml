@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" packages="ligionbob.gamenamehere.utils.appenders">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <JTextAreaAppender name="jtextarea-log" maxLines="100">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} %msg%n</pattern>
+            </PatternLayout>
+        </JTextAreaAppender>
+    </Appenders>
+    <Loggers>
+        <Logger name="GameNameHere" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="jtextarea-log"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
