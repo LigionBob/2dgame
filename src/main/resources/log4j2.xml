@@ -11,7 +11,7 @@
         </JTextAreaAppender>
     </Appenders>
     <Loggers>
-        <Logger name="GameNameHere" level="info" additivity="false">
+        <Logger name="gameidhere" level="info" additivity="false">
             <appender-ref ref="Console"/>
             <appender-ref ref="jtextarea-log"/>
         </Logger>

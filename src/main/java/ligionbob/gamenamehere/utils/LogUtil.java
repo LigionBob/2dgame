@@ -1,5 +1,6 @@
 package ligionbob.gamenamehere.utils;
 
+import ligionbob.gamenamehere.Reference;
 import ligionbob.gamenamehere.utils.appenders.JTextAreaAppender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +14,7 @@ public class LogUtil {
     private static JFrame frameLog;
     private static JTextArea textAreaLog = new JTextArea();
 
-    private static Logger logger = LogManager.getLogger("GameNameHere");
+    private static Logger logger = LogManager.getLogger(Reference.ID);
     public static void init() {
         frameLog = new JFrame("Log");
         frameLog.setVisible(false);
