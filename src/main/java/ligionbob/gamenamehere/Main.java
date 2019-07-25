@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import static ligionbob.gamenamehere.utils.GetScreen.screen;
 
@@ -65,9 +67,13 @@ public class Main {
     public static void setFrameMain(JPanel panel, int closeOperation, boolean resizable) {
         frameMain.setVisible(false);
         frameMain.setContentPane(panel);
+        LogUtil.getLogger().info("Panel Size = " + panel.getSize());
         frameMain.setSize(panel.getSize());
+        LogUtil.getLogger().info("Frame Size = " + panel.getSize());
         frameMain.setDefaultCloseOperation(closeOperation);
         frameMain.setResizable(resizable);
+        frameMain.revalidate();
+        frameMain.repaint();
         frameMain.setVisible(true);
     }
 }
