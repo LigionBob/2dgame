@@ -4,16 +4,30 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <JTextAreaAppender name="jtextarea-log" maxLines="100">
+        <JTextAreaAppender name="TextArea" maxLines="100">
             <PatternLayout>
-                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} %msg%n</pattern>
+                <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
             </PatternLayout>
         </JTextAreaAppender>
+        <File name="File" filename="logs/currentlog.log">
+            <PatternLayout>
+                <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+            </PatternLayout>
+        </File>
+        <RollingFile name="rollingFile" fileName="logs/current.log" filePattern="logs/%d{yyyy-MM-dd}_%d{HH-mm-ss.SSS}.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+            <Policies>
+                <!-- Causes a rollover if the log file is older than the current JVM's start time -->
+                <OnStartupTriggeringPolicy />
+            </Policies>
+        </RollingFile>
     </Appenders>
     <Loggers>
         <Logger name="gameidhere" level="info" additivity="false">
             <appender-ref ref="Console"/>
-            <appender-ref ref="jtextarea-log"/>
+            <appender-ref ref="TextArea"/>
+            <!-- <appender-ref ref="File"/> -->
+            <appender-ref ref="rollingFile"/>
         </Logger>
         <Root level="info">
             <AppenderRef ref="Console"/>
