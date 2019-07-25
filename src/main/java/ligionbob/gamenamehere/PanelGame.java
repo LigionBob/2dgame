@@ -42,15 +42,9 @@ public class PanelGame extends JPanel implements ActionListener, KeyListener {
     public void move(int direction) {
         switch(direction){
             case 0:
-                newY = rectY - 10;
-                break;
-            case 1:
-                newY= rectY + 10;
-                break;
-            case 2:
                 newX = rectX - 10;
                 break;
-            case 3:
+            case 1:
                 newX = rectX + 10;
                 break;
             default:
@@ -71,9 +65,16 @@ public class PanelGame extends JPanel implements ActionListener, KeyListener {
         }
 
     }
+    public void jump(int height) {
+
+    }
+    public void gravity() {
+
+    }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.fillRect(rectX, rectY, rectWidth, rectHeight);
+        //g.fillRect(this.getWidth(), this.getHeight()/2, );
     }
 
     @Override
@@ -88,28 +89,14 @@ public class PanelGame extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        if(keyEvent.getKeyCode() == KeyEvent.VK_W) {
+        if(keyEvent.getKeyCode() == KeyEvent.VK_A) {
             move(0);
             repaint();
-            rectY = newY;
-            //rectX = newX;
-        }
-        if(keyEvent.getKeyCode() == KeyEvent.VK_S) {
-            move(1);
-            repaint();
-            rectY = newY;
-            //rectX = newX;
-        }
-        if(keyEvent.getKeyCode() == KeyEvent.VK_A) {
-            move(2);
-            repaint();
-            //rectY = newY;
             rectX = newX;
         }
         if(keyEvent.getKeyCode() == KeyEvent.VK_D) {
-            move(3);
+            move(1);
             repaint();
-            //rectY = newY;
             rectX = newX;
         }
     }
