@@ -26,7 +26,6 @@
         <Logger name="gameidhere" level="info" additivity="false">
             <appender-ref ref="Console"/>
             <appender-ref ref="TextArea"/>
-            <!-- <appender-ref ref="File"/> -->
             <appender-ref ref="rollingFile"/>
         </Logger>
         <Root level="info">
