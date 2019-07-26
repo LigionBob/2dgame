@@ -19,8 +19,11 @@ public class PanelGame extends JPanel implements ActionListener, KeyListener {
     private static int newX;
     private static int rectY;
     private static int newY;
+    private static int velY;
     private static int rectWidth;
     private static int rectHeight;
+    private static int floorHeight;
+    private static boolean jump;
     Timer timer = new Timer(1, this);
 
     public PanelGame() {
@@ -34,6 +37,7 @@ public class PanelGame extends JPanel implements ActionListener, KeyListener {
         rectHeight = 100;
         rectX = this.getWidth()/2 - rectWidth/2;
         rectY = this.getHeight()/2 - rectHeight/2;
+        floorHeight = this.getHeight() - 20;
         this.addKeyListener(this);
         this.setFocusable(true);
         this.setFocusTraversalKeysEnabled(false);
@@ -66,10 +70,20 @@ public class PanelGame extends JPanel implements ActionListener, KeyListener {
 
     }
     public void jump(int height) {
-
+        if(!jump) {
+            jump = true;
+            velY = height;
+        }
+        newY += gravity(velY);
+        if (newY <= floorHeight) {
+               jump = false;
+        } else {
+            rectY = newY;
+        }
+        repaint();
     }
-    public void gravity() {
-
+    public int gravity(int velocity) {
+        return velocity - 10;
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -98,6 +112,13 @@ public class PanelGame extends JPanel implements ActionListener, KeyListener {
             move(1);
             repaint();
             rectX = newX;
+        }
+        if(keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
+            LogUtil.getLogger().info("Jump key pressed");
+            jump(50);
+            while(jump) {
+                jump(50);
+            }
         }
     }
 
